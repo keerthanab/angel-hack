@@ -1,0 +1,31 @@
+
+doctype 5
+html
+	head
+		title= "Angel-Hack!"
+		link(rel='stylesheet', href="http://localhost:3000/libs/bootstrap/css/bootstrap.css")
+		link(rel='stylesheet', href="http://localhost:3000/public/libs/bootstrap/css/example-fluid-layout.css")
+
+		link(rel='stylesheet', href='http://localhost:3000/public/libs/bootstrap/css/bootstrap-responsive.min.css')
+		link(rel='stylesheet', href='http://localhost:3000/public/stylesheets/style.css')
+		
+		
+		
+
+	body
+		You are in Layout
+		
+		.container-fluid
+			.row-fluid
+				.span3
+					Hi you are in home layout
+					form.well.form-horizontal(method='get', action='/login')
+						input.input-large(type="text",placeholder="Email", name="u")
+						p.small for ex: yourname@company.com
+							br
+						input.input-large(type="password",placeholder="Password", name='p')
+						p Atleast 6 digits
+							br
+						label.checkbox Remember me
+							input(type="checkbox") 
+						input(type='submit', value="Submit")
