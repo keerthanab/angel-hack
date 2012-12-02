@@ -3,9 +3,49 @@
  * GET home page.
  */
 
+
+var mongoose = require('mongoose')
+  , Schema = mongoose.Schema
+  , ObjectId = Schema.ObjectID;
+
+var LoginSchema = new Schema({
+    username: {type : String, default : ''}
+  , password: {type : String, default : ''}
+  , createdAt: {type : Date, default : Date.now}
+})
+
+mongoose.connect('mongodb://localhost/angel');
+mongoose.model('Login', LoginSchema);
+
+var Login = mongoose.model('Login');
+
 exports.home = function(req, res){
-  console.log("Hi from index controller ;) ");	
-  res.render('trial.html', { title: 'Angel-Hack' });
+  console.log("Hi from index controller - home ;) ");	
+  res.render('home', { title: 'Angel-Hack' });
 };
+
+exports.login = function(req, res){
+  console.log(req.param('username'));
+  // get params and save to mongo! 
+ 
+	var login = new Login(); 
+	login.username = req.param('username');
+	login.password =  req.param('password');
+
+	login.save( function(error){
+	    if(error){
+			console.log("Sorry dude, error in saving :( ");	
+	        res.json(error);
+	        
+	    }
+	    else{
+	        console.log("Yay saved all :) ");
+	        mongoose.disconnect();	      
+	    }
+	});   
+  
+};
+
+
 
 

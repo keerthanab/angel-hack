@@ -13,7 +13,7 @@ var app = module.exports = express();
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/app/views')
-  //app.set('view engine', 'jade');
+  app.set('view engine', 'jade');
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser({uploadDir:'./public/uploads'})); //temporary directory storage for files! 
@@ -21,16 +21,39 @@ app.configure(function(){
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 
+  
+//To render in html do these steps
   // disable layout
-  app.set("view options", {layout: false});
+  //app.set("view options", {layout: false});
   // make a custom html template
-  app.engine('html', require('ejs').renderFile);
+  //app.engine('html', require('ejs').renderFile);
+
+ /* app.use(express.session({
+      secret: 'noobjs',
+      store: new mongoStore({
+        url: 'mongodb://localhost/mydb',
+        collection : 'sessions'
+      })
+    })) */
 
 });
 
-//app.configure('development', function(){
-//  app.use(express.errorHandler());
-//});
+app.configure('development', function(){
+  app.use(express.errorHandler());
+});
+
+//require('./config/development');
+
+
+
+
+
+// Bootstrap models
+/*var models_path = __dirname + '/app/models'
+  , model_files = fs.readdirSync(models_path)
+model_files.forEach(function (file) {
+  require(models_path+'/'+file)
+})*/
 
 require('./config/routes')(app); //bootstrap routes right away!
 
