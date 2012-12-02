@@ -29,14 +29,6 @@ app.configure(function(){
   // make a custom html template
   //app.engine('html', require('ejs').renderFile);
 
- /* app.use(express.session({
-      secret: 'noobjs',
-      store: new mongoStore({
-        url: 'mongodb://localhost/mydb',
-        collection : 'sessions'
-      })
-    })) */
-
 });
 
 app.configure('development', function(){
