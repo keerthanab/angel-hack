@@ -3,21 +3,8 @@
  * GET home page.
  */
 
-
 var mongoose = require('mongoose')
-  , Schema = mongoose.Schema
-  , ObjectId = Schema.ObjectID;
-
-var LoginSchema = new Schema({
-    username: {type : String, default : ''}
-  , password: {type : String, default : ''}
-  , createdAt: {type : Date, default : Date.now}
-})
-
-mongoose.connect('mongodb://localhost/angel');
-mongoose.model('Login', LoginSchema);
-
-var Login = mongoose.model('Login');
+	,Login = mongoose.model('Login');
 
 exports.home = function(req, res){
   console.log("Hi from index controller - home ;) ");	
@@ -40,7 +27,7 @@ exports.login = function(req, res){
 	    }
 	    else{
 	        console.log("Yay saved all :) ");
-	        mongoose.disconnect();	      
+	        //mongoose.disconnect();	      
 	    }
 	});   
   

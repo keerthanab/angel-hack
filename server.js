@@ -6,7 +6,8 @@
 
 var express = require('express')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , mongoose = require('mongoose')
 
 var app = module.exports = express();
 
@@ -44,8 +45,9 @@ app.configure('development', function(){
 
 //require('./config/development');
 
+mongoose.connect('mongodb://localhost/angel');
 
-
+require('./app/models/login');
 
 
 // Bootstrap models
